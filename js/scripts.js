@@ -314,4 +314,8 @@ document.addEventListener('DOMContentLoaded', () => {
     renderProductos('todos');
     updateCart();
 
+    
+
+    
+
 });
