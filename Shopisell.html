@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Virtual - ShOpiSELL</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <div class="logo">ShOpiSELL</div>
+            <nav class="nav-principal">
+                <ul>
+                    <li><button id="btn-home" class="nav-btn active">Home</button></li>
+                    <li><button id="btn-tienda" class="nav-btn">Tienda Online</button></li>
+                    <li><button id="btn-vende" class="nav-btn">ClickVende</button></li>
+                </ul>
+            </nav>
+            <div class="header-iconos">
+                <button id="cart-toggle-btn" class="cart-toggle">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-counter">0</span>
+                </button>
+                <button id="menu-toggle-btn" class="nav-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        
+        <section id="home-section" class="main-section">
+            <div class="main-section-content">
+                <h1 class="section-title">🚀 Bienvenido a ShOpiSELL 🛍️</h1>
+                <p class="section-subtitle">
+                    El lugar donde puedes comprar la mejor tecnología o vender tu propio equipo.
+                </p>
+                <div>
+                    <button id="go-to-tienda" class="btn-publicar">Explorar Productos</button>
+                    <button id="go-to-vende" class="btn-publicar">Vende Aquí</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="tienda-section" class="main-section hidden">
+            <h2 class="section-title">Tienda Online</h2>
+            <p class="section-subtitle">Todo lo que buscas está en ShOpiSELL.</p>
+            
+            <nav class="nav-categorias-principal">
+                <button id="todos" class="filtro-btn active">Todos</button> 
+                <button id="pantalon" class="filtro-btn">Pantalones</button>
+                <button id="camisetas" class="filtro-btn">Camisetas</button>
+                <button id="chaquetas" class="filtro-btn">Chaquetas</button>
+                <button id="buzos" class="filtro-btn">Buzos</button>
+                <button id="accesorios" class="filtro-btn">Accesorios</button>
+            </nav>
+
+            <div id="productos-grid" class="productos-grid">
+                </div>
+            
+            <p id="sin-resultados-msg" class="section-subtitle hidden" style="color: #BB86FC;">No hay productos que coincidan con el filtro seleccionado.</p>
+        </section>
+
+        <section id="vende-section" class="main-section hidden">
+            <h2 class="section-title"> Empieza aqui la aventura de emprender y vender ✨🌟  </h2>
+            <p class="section-subtitle">Publica tu producto en segundos y llega a miles de compradores.</p>
+            
+            <form id="form-vende">
+                <div class="form-group">
+                    <label for="nombre-producto">Nombre del Producto</label>
+                    <input type="text" id="nombre-producto" required>
+                </div>
+                <div class="form-group">
+                    <label for="precio-cop">Precio (COP)</label>
+                    <input type="number" id="precio-cop" min="1000" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="categoria-principal">Categoría</label>
+                    <select id="categoria-principal" required>
+                        <option value="" disabled selected>Seleccione una categoría</option>
+                        <option value="pantalon">Pantalones</option>
+                        <option value="camisetas">Camisetas</option>
+                        <option value="chaquetas">Chaquetas</option>
+                        <option value="buzos">Buzos</option>
+                        <option value="accesorios">Accesorios</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="tipo-vendedor">Tipo de Vendedor (Solo informativo)</label>
+                    <input type="text" id="tipo-vendedor" value="Usuario Registrado" disabled>
+                </div>
+
+                <div class="form-group form-group-full">
+                    <label for="descripcion-producto">Descripción Detallada</label>
+                    <textarea id="descripcion-producto" required></textarea>
+                </div>
+
+                <div class="form-group image-upload-area">
+                    <label>Imagen del Producto</label>
+                    <div class="image-preview-wrapper">
+                        <img id="preview-imagen" src="" alt="Previsualización" style="display: none;">
+                        <input type="file" id="input-imagen" accept="image/*">
+                        <label for="input-imagen" class="custom-file-upload">
+                            <i class="fas fa-upload"></i> Seleccionar Imagen
+                        </label>
+                        <span id="archivo-seleccionado">No se ha seleccionado archivo.</span>
+                    </div>
+                </div>
+
+                <div id="feedback-vende" class="form-group-full hidden"></div>
+                
+                <div class="form-group form-group-full">
+                    <button type="submit" class="btn-publicar">Publicar Producto</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="perfil-section" class="main-section hidden">
+            <h2 class="section-title">Mi Perfil</h2>
+            <p class="section-subtitle">Aquí verás tus datos, publicaciones y pedidos (Requiere Backend).</p>
+            <div id="perfil-content" style="text-align: center;">
+                <p>Bienvenido, <strong id="perfil-email">Usuario</strong>.</p>
+                <p>Tu rol de cuenta es: <strong id="perfil-rol"></strong>.</p>
+            </div>
+        </section>
+
+    </main>
+    
+    <div id="sidebar">
+        <button id="menu-cerrar-btn" class="menu-cerrar"><i class="fas fa-times"></i></button>
+        <div class="logo-sidebar">ShOpiSELL</div>
+        
+        <nav class="sidebar-nav">
+            <ul>
+                <li><button id="login-link" data-section="login"><i class="fas fa-arrow-right-to-bracket"></i> Iniciar Sesión</button></li>
+                <li><button id="mi-perfil-link" data-section="perfil" class="hidden"><i class="fas fa-user"></i> Mi Perfil</button></li>
+                
+                <li class="separator"></li>
+                
+                <li><button class="sidebar-nav-btn" data-section="home"><i class="fas fa-home"></i> Home</button></li>
+                <li><button class="sidebar-nav-btn" data-section="tienda"><i class="fas fa-store"></i> Tienda Online</button></li>
+                <li><button class="sidebar-nav-btn" data-section="vende"><i class="fas fa-money-bill"></i> Vender Producto</button></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id="login-modal" class="login-modal">
+        <button class="cerrar-btn" id="login-cerrar-btn"><i class="fas fa-times"></i></button>
+        <h2>Ingresar</h2>
+        <form id="login-form">
+            <label for="login-email">Correo Electrónico:</label>
+            <input type="email" id="login-email" required>
+            <label for="login-password">Contraseña:</label>
+            <input type="password" id="login-password" required>
+            <button type="submit" class="btn-publicar">Ingresar</button>
+            <div id="login-feedback" style="margin-top: 10px; color: #BB86FC; text-align: center; font-weight: bold;"></div>
+            <p style="margin-top: 20px; text-align: center;">¿No tienes cuenta? <a href="#" id="register-link">Regístrate aquí</a></p>
+        </form>
+    </div>
+
+    <div id="register-modal" class="login-modal">
+        <button class="cerrar-btn" id="register-cerrar-btn"><i class="fas fa-times"></i></button>
+        <h2>Crear Cuenta</h2>
+        <form id="register-form">
+            <label for="register-email">Correo Electrónico:</label>
+            <input type="email" id="register-email" required>
+            <label for="register-password">Contraseña:</label>
+            <input type="password" id="register-password" required>
+            <label for="register-rol">Tipo de Cuenta:</label>
+            <select id="register-rol" required>
+                <option value="Cliente">Cliente</option>
+                <option value="Vendedor">Vendedor</option>
+            </select>
+            <button type="submit" class="btn-publicar">Registrarse</button>
+            <div id="register-feedback" style="margin-top: 10px; color: #BB86FC; text-align: center; font-weight: bold;"></div>
+        </form>
+    </div>
+
+    <div id="cart-modal" class="cart-modal">
+        <button class="cerrar-btn" id="cart-cerrar-btn"><i class="fas fa-times"></i></button>
+        <h2>Tu Carrito</h2>
+        <div id="cart-items" class="cart-items-container">
+            </div>
+        <div class="cart-summary">
+            Total: <span id="cart-total-price">$ 0</span>
+        </div>
+        <button id="btn-checkout" class="btn-checkout" disabled>Finalizar Compra</button>
+    </div>
+    
+    <div id="overlay" class="hidden"></div>
+    
+    <script src="js/scripts.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+ 
+                  
+                    
+                     
+                
+           
+
+                 
+                 
+                 
+                 
+                 
+        
+             
+            
+                  
+                
+                            
+        
+
